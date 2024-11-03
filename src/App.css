@@ -15,6 +15,9 @@ main {
 .container {
     position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .command-container {
@@ -98,7 +101,7 @@ main {
 }
 
 .task:hover .task-description {
-    width: 590px;
+    width: calc(100% - 110px);
     transform: translateX(55px);
     display: flex;
 }
@@ -141,6 +144,33 @@ main {
     box-shadow: 0 0 10px 5px #e41313;
 }
 
+/*** Media Query - Responsividade *****
+**************************************/
 
+@media (max-width: 700px) and (min-width: 480) {
+    main {
+        justify-content: center;
+        width: 85%;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    .command-container {
+        width: 85%;
+    }
+}
+
+#media (max-width: 479px) {
+
+    .command-container .task-input {
+        width: 80%;
+    }
+
+    .task:hover .task-description {
+        font-size: 1vmin;
+    }
+}
 
 
