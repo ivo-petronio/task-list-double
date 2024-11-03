@@ -37,6 +37,9 @@ function App() {
       enabled: true,
       task: item
     })
+
+    let focus = document.querySelector(".task-input")
+    focus.parentNode.style.boxShadow = "0 0 10px 5px purple, 0 0 20px 10px white";
   }
 
   function handleSaveEdit() {
@@ -51,6 +54,9 @@ function App() {
       enabled: false,
       task: ""
     })
+
+    let focus = document.querySelector(".task-input")
+    focus.parentNode.style.boxShadow = "";
     
   }
 
