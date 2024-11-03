@@ -9,8 +9,8 @@
 
 :root {
     --cor1: #119cea;
-    --cor2: #12599c;
-    --corBtn: #000;
+    --cor2: #000000;
+    --corBtn: #119cea;
     --fundo1: var(--cor1);
     --fundo2: var(--cor2);
 }
@@ -25,7 +25,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(45deg, var(--cor1) 20%, var(--cor2));
+    background: linear-gradient(to right, var(--cor1) 20%, var(--cor2) 80%);
     display: flex;
     justify-content: center;
 }
