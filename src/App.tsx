@@ -32,10 +32,6 @@ function App() {
   }
 
   function handleEdit(item: string) {
-    let elemento = document.querySelector(".task-input")
-    if(elemento) {
-      elemento.parentNode.style.boxShadow = "0 0 10px 6px purple, 0px 0px 15px 10px white";
-    }
     setInput(item)
     setEdit({
       enabled: true,
@@ -56,8 +52,6 @@ function App() {
       task: ""
     })
     
-    let elemento = document.querySelector(".task-input");
-    elemento.parentNode.style.boxShadow = "none";
   }
 
   function handleDelete(item: string) {
@@ -82,7 +76,7 @@ function App() {
         </div>
         <div className="tasks-board">
         {tasks.map( (item, index) => (
-          <div key={item} className="task">
+          <div key={index} className="task">
             <button className="edit-btn button" onClick={ () => handleEdit(item)}> Edit </button>
             <button className="delete-btn button" onClick={ () => handleDelete(item)}> Delete </button>
             <span className="task-description"> {item} </span>
