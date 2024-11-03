@@ -63,7 +63,6 @@ main {
     width: 100%;
     color: white;
     margin-top: 30px;
-    border-radius: 20px;
 }
 
 .tasks-board:before {
@@ -82,7 +81,7 @@ main {
     height: 55px;
     font-size: 20px;
     width: 100%;
-    margin-bottom: 10px;
+    margin: 5px 0;
 }
 
 .button {
@@ -147,30 +146,37 @@ main {
 /*** Media Query - Responsividade *****
 **************************************/
 
-@media (max-width: 700px) and (min-width: 480) {
-    main {
-        justify-content: center;
-        width: 85%;
-    }
+@media screen and (max-width: 700px) and (min-width: 480px) {
 
-    .container {
-        justify-content: center;
+    main {
+        width: 100%;
     }
+}
+
+@media screen and (max-width: 480px) {
 
     .command-container {
-        width: 85%;
-    }
-}
+        width: 80%;
+        height: 50px;
+        margin-right: 10px
 
-#media (max-width: 479px) {
+    }
+
+    .task {
+        font-size: 4.5vmin;
+    }
 
     .command-container .task-input {
-        width: 80%;
+        font-size: 17px;
+        border-radius: 30px;
     }
 
-    .task:hover .task-description {
-        font-size: 1vmin;
+    .save-task-btn {
+        font-size: 4vmin;
+        width: 35px;
+    }
+
+    .task button {
+        font-size: 4vmin;
     }
 }
-
-
