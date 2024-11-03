@@ -3,8 +3,6 @@ import './App.css'
 
 function App() {
 
-  let elemento = "";
-
   const [tasks, setTasks] = useState([
     "Dar banho no Fry",
     "Comprar a ração do cachorro",
@@ -34,8 +32,10 @@ function App() {
   }
 
   function handleEdit(item: string) {
-    elemento = document.querySelector(".task-input");
-    elemento.parentNode.style.boxShadow = "0 0 10px 6px purple, 0px 0px 15px 10px white";
+    let elemento = document.querySelector(".task-input")
+    if(elemento) {
+      elemento.parentNode.style.boxShadow = "0 0 10px 6px purple, 0px 0px 15px 10px white";
+    }
     setInput(item)
     setEdit({
       enabled: true,
@@ -57,7 +57,7 @@ function App() {
     })
     
     let elemento = document.querySelector(".task-input");
-    elemento.parentNode.style.boxShadow = "";
+    elemento.parentNode.style.boxShadow = "none";
   }
 
   function handleDelete(item: string) {
