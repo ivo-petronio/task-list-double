@@ -6,11 +6,11 @@ function App() {
   const [tasks, setTasks] = useState()
 
   useEffect(() => {
-    try {
-      setTasks(localStorage.getItem("tasks"))
-    } catch (err) {
-      alert("Falha no carregamento do banco de dados")
-    }
+      const dados = localStorage.getItem("tasks")
+      if (dados)
+        setTasks(dados)
+      else
+        setTasks([])
   }, [])
 
   const [input, setInput] = useState("");
