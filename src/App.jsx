@@ -3,15 +3,21 @@ import './App.css'
 
 function App() {
 
+  const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
-      const dados = localStorage.getItem("tasks")
-      if (dados)
-        setTasks(JSON.parse(dados))
+      function getStart() {
+        let dadosString = localStorage.getItem("my_tasks")
+        if(dadosString)
+          setTasks(JSON.parse(dadosString))
+      }
+      getStart()
   }, [])
 
-  const [input, setInput] = useState("");
+  useEffect( () => {
+    localStorage.setItem("my_tasks", JSON.stringify(tasks))
+  }, [tasks])
 
   const [edit, setEdit] = useState({
     enabled: false,
@@ -28,14 +34,18 @@ function App() {
       handleSaveEdit();
       return;
     }
-    
-    setTasks( tasks => [...tasks, input])
-    localStorage.setItem("tasks", tasks)
+
+    const newTask = {
+      id: Date.now(),
+      description: input
+    }
+
+    setTasks([...tasks, newTask])
     setInput("");
   }
 
-  function handleEdit(item: string) {
-    setInput(item)
+  function handleEdit(item) {
+    setInput(item.description)
     setEdit({
       enabled: true,
       task: item
@@ -43,11 +53,10 @@ function App() {
   }
 
   function handleSaveEdit() {
-    const findIndexTask = tasks.findIndex(task => task  === edit.task)
+    const findIndexTask = tasks.findIndex(task => task.id === edit.task.id)
     const allTasks = [...tasks];
-    allTasks[findIndexTask] = input;
+    allTasks[findIndexTask].description = input;
     setTasks(allTasks);
-
     setInput("");
 
     setEdit({
@@ -57,10 +66,11 @@ function App() {
     
   }
 
-  function handleDelete(item: string) {
+  function handleDelete(item) {
     let removed = tasks.filter( task => task !== item)
     if(confirm("Deseja mesmo excluir essa tarefa?")) {
       setTasks(removed)
+      localStorage.setItem("my_tasks", removed)
     }
     return;
   }
@@ -82,7 +92,7 @@ function App() {
           <div key={index} className="task">
             <button className="edit-btn button" onClick={ () => handleEdit(item)}> Edit </button>
             <button className="delete-btn button" onClick={ () => handleDelete(item)}> Delete </button>
-            <span className="task-description"> {item} </span>
+            <span className="task-description"> {item.description} </span>
           </div>
         ))}
         </div>
