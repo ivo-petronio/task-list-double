@@ -1,16 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
 
-  const [tasks, setTasks] = useState()
+  const [tasks, setTasks] = useState([])
 
   useEffect(() => {
       const dados = localStorage.getItem("tasks")
       if (dados)
-        setTasks(dados)
-      else
-        setTasks([])
+        setTasks(JSON.parse(dados))
   }, [])
 
   const [input, setInput] = useState("");
