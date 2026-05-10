@@ -3,11 +3,15 @@ import './App.css'
 
 function App() {
 
-  const [tasks, setTasks] = useState([
-    "Dar banho no Fry",
-    "Comprar a ração do cachorro",
-    "Comprar a coleira antipulgas"
-  ]);
+  const [tasks, setTasks] = useState()
+
+  useEffect(() => {
+    try {
+      setTasks(localStorage.getItem("tasks"))
+    } catch (err) {
+      alert("Falha no carregamento do banco de dados")
+    }
+  }, [])
 
   const [input, setInput] = useState("");
 
@@ -28,6 +32,7 @@ function App() {
     }
     
     setTasks( tasks => [...tasks, input])
+    localStorage.setItem("tasks", tasks)
     setInput("");
   }
 
